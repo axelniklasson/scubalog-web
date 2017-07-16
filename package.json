@@ -1,0 +1,35 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate provided as an alternative to yeoman.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelniklasson/boilerplate.git"
+  },
+  "author": "Axel Niklasson (http://axelniklasson.se)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/axelniklasson/boilerplate/issues"
+  },
+  "homepage": "https://github.com/axelniklasson/boilerplate#readme",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-inject": "^3.0.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-minify": "0.0.5",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-server-livereload": "^1.7.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
+    "main-bower-files": "^2.11.1"
+  }
+}
