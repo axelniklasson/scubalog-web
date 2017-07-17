@@ -1,6 +1,6 @@
 var module = angular.module('scubalog.controllers');
 
-module.controller('LogbookController', ['$scope', 'DiveService', function($scope, DiveService) {
+module.controller('LogbookController', ['$scope', 'DiveService', 'LocalStorageService', function($scope, DiveService, LocalStorageService) {
     // Materialize stuff
     $('.modal').modal();
     $('.datepicker').pickadate({
@@ -36,7 +36,14 @@ module.controller('LogbookController', ['$scope', 'DiveService', function($scope
     };
 
     $scope.saveDive = function() {
+        // Fugly
+        var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
+        var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
+        var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
+        $scope.currentDive.date = new Date(year + '-' + month + '-' + day);
+
         if (!$scope.editingDive) {
+            $scope.currentDive.diver = LocalStorageService.get('user')._id;
             DiveService.createDive($scope.currentDive).then(function(response) {
                 Materialize.toast('Dive created!', 3000);
                 $scope.dives.unshift(response.data);
@@ -47,12 +54,6 @@ module.controller('LogbookController', ['$scope', 'DiveService', function($scope
                 }
             });
         } else {
-            // Fugly
-            var year = $('.datepicker').pickadate('picker').get('highlight', 'yyyy');
-            var day = $('.datepicker').pickadate('picker').get('highlight', 'dd');
-            var month = $('.datepicker').pickadate('picker').get('highlight', 'mm');
-            $scope.currentDive.date = new Date(year + '-' + month + '-' + day);
-
             DiveService.updateDive($scope.currentDive).then(function(response) {
                 angular.forEach($scope.dives, function(dive, index) {
                     if (dive._id == response._id) {

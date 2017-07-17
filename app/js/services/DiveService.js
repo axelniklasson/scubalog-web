@@ -1,11 +1,11 @@
 var module = angular.module('scubalog.services');
 
-module.factory('DiveService', ['$http', function($http) {
+module.factory('DiveService', ['$http', 'LocalStorageService', function($http, LocalStorageService) {
     return {
         getDives: function() {
             var req = {
                 method: 'GET',
-                url: $http.defaults.base_url + '/dives',
+                url: $http.defaults.base_url + '/dives?diverID=' + LocalStorageService.get('user')._id,
                 headers: {
                     'Content-Type': 'application/json'
                 }

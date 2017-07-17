@@ -2,7 +2,7 @@ var module = angular.module('scubalog.filters');
 
 module.filter('prettyDate', function() {
     return function(dateString) {
-        return moment(dateString).format('MMM Do YY');
+        return moment(dateString).format('MMM D YYYY');
     };
 });
 
