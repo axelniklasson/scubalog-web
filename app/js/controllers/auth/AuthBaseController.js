@@ -12,6 +12,7 @@ function($scope, $facebook, $state, LocalStorageService, $rootScope) {
         $facebook.logout().then(function(response) {
             LocalStorageService.clear('fbUser');
             LocalStorageService.clear('fbToken');
+            LocalStorageService.clear('user');
             $rootScope.auth.authenticated = false;
             $state.transitionTo('base.login');
         });

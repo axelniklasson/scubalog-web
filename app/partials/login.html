@@ -1,2 +1,41 @@
-<h1>Login</h1>
-<button type="button" name="button" ng-click="login()">Login with Facebook</button>
+<div class="container">
+    <h1>Login</h1>
+    <p>Sign in with your Facebook account to start using ScubaLog today.</p>
+    <a class="waves-effect waves-light btn" ng-click="login()">Sign in with Facebook</a>
+</div>
+
+<!-- Registration modal -->
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <h4>Complete registration</h4>
+        <p>Fill in a few things to get started.</p>
+
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <select class="browser-default" ng-model="registrationData.organisation">
+                        <option value="" disabled selected>Choose your organisation</option>
+                        <option value="PADI">PADI</option>
+                        <option value="SSI">SSI</option>
+                        <option value="CMAS">CMAS</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <select class="browser-default" ng-model="registrationData.certification">
+                        <option value="" disabled selected>Choose your certification</option>
+                        <option value="OW">Open Water</option>
+                        <option value="AOW">Advanced Open Water</option>
+                        <option value="RESCUE">Rescue Diver</option>
+                        <option value="DIVEMASTER">Divemaster</option>
+                        <option value="INSTRUCTOR">Instructor</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="cancelRegistration()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a ng-click="register()" class="modal-action modal-close waves-effect waves-green btn-flat">Register</a>
+    </div>
+</div>

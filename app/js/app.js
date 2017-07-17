@@ -32,6 +32,7 @@ var app = angular.module('ScubaLog', [
 		$stateProvider
 		.state('base', {
 			templateUrl: 'partials/base.html',
+			controller: 'BaseController',
 			abstract: true
 		})
 		.state('base.landing', {
@@ -100,7 +101,8 @@ var app = angular.module('ScubaLog', [
 					if (!LocalStorageService.exists('fbUser')) {
 						FacebookService.cacheUserData();
 					} else {
-						$rootScope.auth.user = LocalStorageService.get('fbUser');
+						$rootScope.auth.user = LocalStorageService.get('user');
+						$rootScope.auth.user.picture = LocalStorageService.get('fbUser').picture;
 					}
 				} else {
 					LocalStorageService.clear('fbUser');

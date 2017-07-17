@@ -15,7 +15,7 @@
                 </div>
                 <a href="#!user"><img class="circle" ng-src="{{ auth.user.picture }}"></a>
                 <a href="#!name"><span class="white-text name">{{ auth.user.name }}</span></a>
-                <a href="#!email"><span class="white-text email">{{ auth.user.email }}</span></a>
+                <a href="#!email"><span class="white-text email">{{ auth.user.certification | certification }}</span></a>
             </div></li>
             <li ui-sref-active="active"><a ui-sref="auth.dashboard">Dashboard <i class="material-icons left">dashboard</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.logbook">Logbook <i class="material-icons left">list</i></a></li>
