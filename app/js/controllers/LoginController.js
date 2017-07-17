@@ -1,27 +1,12 @@
 var module = angular.module('scubalog.controllers');
 
-module.controller('LoginController', ['$scope', '$facebook',function($scope, $facebook) {
+module.controller('LoginController', ['$scope', '$facebook', '$state', 'FacebookService', 'LocalStorageService',
+function($scope, $facebook, $state, FacebookService, LocalStorageService) {
     $scope.login = function() {
-        $facebook.login().then(function() {
-            $facebook.getLoginStatus().then(function(response) {
-                $facebook.api('/me').then(function(response) {
-                    var fbUser = {};
-                    fbUser.name = response.name;
-                    fbUser.id = response.id;
-
-                    $facebook.api('/me/picture').then(function(response) {
-                        fbUser.picture = response.data.url;
-                    }, function(err) {
-                        console.log(err);
-                        $rootScope.social.fb.loading = false;
-                    });
-
-                    console.log(fbUser);
-
-                }, function(err) {
-                    console.log(err);
-                });
-            });
+        $facebook.login().then(function(response) {
+            FacebookService.cacheUserData();
+            LocalStorageService.set('fbToken', response.authResponse.accessToken);
+            $state.transitionTo('auth.dashboard');
         });
     };
 }]);

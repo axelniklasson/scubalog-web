@@ -11,7 +11,10 @@ module.controller('LogbookController', ['$scope', 'DiveService', function($scope
     DiveService.getDives().then(function(response) {
         $scope.dives = response.data;
     }).then(function(err) {
-        console.log(err);
+        if (err) {
+            Materialize.toast('Could not list dives!', 3000);
+            console.log(err);
+        }
     });
 
     $scope.editDive = function(index) {
@@ -79,7 +82,6 @@ module.controller('LogbookController', ['$scope', 'DiveService', function($scope
 
     $scope.deleteDive = function() {
         DiveService.deleteDive($scope.currentDive._id).then(function(response) {
-            console.log(response);
             angular.forEach($scope.dives, function(dive, index) {
                 if (dive._id == $scope.currentDive._id) {
                     $scope.dives.splice(index, 1);

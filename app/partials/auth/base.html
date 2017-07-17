@@ -1,18 +1,36 @@
 <nav>
     <div class="nav-wrapper">
         <a href="#!" class="brand-logo">ScubaLog</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li ui-sref-active="active"><a ui-sref="auth.dashboard">Dashboard <i class="material-icons left">dashboard</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.logbook">Logbook <i class="material-icons left">list</i></a></li>
-            <li ui-sref-active="active"><a ui-sref="auth.profile">Profile <i class="material-icons left">account_circle</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="profileDropdown">{{ auth.user.name }} <i class="material-icons left">account_circle</i><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
-        <ul class="side-nav" id="mobile-demo">
+
+        <ul class="side-nav" id="mobile-nav">
+            <li><div class="user-view">
+                <div class="background">
+                    <img src="img/corals.jpg" width="100%">
+                </div>
+                <a href="#!user"><img class="circle" ng-src="{{ auth.user.picture }}"></a>
+                <a href="#!name"><span class="white-text name">{{ auth.user.name }}</span></a>
+                <a href="#!email"><span class="white-text email">{{ auth.user.email }}</span></a>
+            </div></li>
             <li ui-sref-active="active"><a ui-sref="auth.dashboard">Dashboard <i class="material-icons left">dashboard</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.logbook">Logbook <i class="material-icons left">list</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.profile">Profile <i class="material-icons left">account_circle</i></a></li>
+            <li ui-sref-active="active"><a ui-sref="auth.settings">Settings <i class="material-icons left">settings</i></a></li>
+            <li ng-click="logout()"><a>Log out <i class="material-icons left">power_settings_new</i></a></li>
         </ul>
     </div>
 </nav>
+
+<!-- Dropdown -->
+<ul id="profileDropdown" class="dropdown-content">
+    <li ui-sref-active="active"><a ui-sref="auth.profile">Profile <i class="material-icons left">account_circle</i></a></li>
+    <li ui-sref-active="active"><a ui-sref="auth.settings">Settings <i class="material-icons left">settings</i></a></li>
+    <li ng-click="logout()"><a>Log out <i class="material-icons left">power_settings_new</i></a></li>
+</ul>
 
 <div ui-view></div>
