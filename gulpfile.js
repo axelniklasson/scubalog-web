@@ -32,7 +32,7 @@ gulp.task('js:watch', function() {
 
 gulp.task('inject-js', ['js'], function() {
 	return gulp.src('./app/index.html')
-		.pipe(inject(gulp.src('./app/dist/dist-min.js', {read: false}), {relative: true}))
+		.pipe(inject(gulp.src('./app/dist/dist.js', {read: false}), {relative: true}))
 		.pipe(gulp.dest('./app'));
 });
 
@@ -71,7 +71,7 @@ gulp.task('bower:watch', function() {
 
 gulp.task('inject-bower', ['bower'], function() {
 	return gulp.src('./app/index.html')
-		.pipe(inject(gulp.src('./app/dist/bower-components-min.js', {read: false}), {relative: true, name: 'bower'}))
+		.pipe(inject(gulp.src('./app/dist/bower-components.js', {read: false}), {relative: true, name: 'bower'}))
 		.pipe(gulp.dest('./app'));
 });
 
