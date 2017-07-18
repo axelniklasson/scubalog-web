@@ -13,7 +13,8 @@ var app = angular.module('ScubaLog', [
 
 	app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$facebookProvider', function($stateProvider, $httpProvider, $urlRouterProvider, $facebookProvider) {
 		// Initialize ngFacebook
-		$facebookProvider.setAppId('1599673090056954');
+		// $facebookProvider.setAppId('1599673090056954');
+		$facebookProvider.setAppId('468010480219637');
 		$facebookProvider.setPermissions('email');
 
 		$facebookProvider.setCustomInit({
@@ -23,7 +24,8 @@ var app = angular.module('ScubaLog', [
 		});
 
 		// Base url
-		$httpProvider.defaults.base_url = 'http://localhost:8080';
+		// $httpProvider.defaults.base_url = 'http://localhost:8080';
+		$httpProvider.defaults.base_url = 'https://scubalog-io.appspot.com';
 
 		// Interceptors
 		$httpProvider.interceptors.push('UnauthorizedInterceptor');
@@ -78,7 +80,8 @@ var app = angular.module('ScubaLog', [
 		$urlRouterProvider.otherwise('/dashboard');
 	}]);
 
-	app.run(['$rootScope', '$state', '$facebook', 'LocalStorageService', function($rootScope, $state, $facebook, LocalStorageService) {
+	app.run(['$rootScope', '$state', '$facebook', 'LocalStorageService', 'FacebookService',
+	function($rootScope, $state, $facebook, LocalStorageService, FacebookService) {
 		$rootScope.auth = {};
 
 		// Load the facebook SDK asynchronously

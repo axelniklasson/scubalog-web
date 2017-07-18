@@ -86,7 +86,7 @@ gulp.task('serve', ['bower:watch', 'js:watch', 'sass:watch'], function() {
 		}));
 });
 
-gulp.task('build', function() {
+gulp.task('build', ['default'], function() {
 	gulp.src('./app/**/*')
 		.pipe(gulp.dest('./build'));
 });
