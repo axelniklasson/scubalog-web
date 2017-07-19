@@ -37,7 +37,9 @@ function($scope, DiveService, DiverService, LocalStorageService) {
         $scope.currentDive = $scope.dives[index];
         $scope.currentDive.date = new Date($scope.currentDive.date);
         $scope.modalTitle = 'Edit dive';
-        $scope.currentDive.buddy = $scope.currentDive.buddy._id;
+        if ($scope.currentDive.buddy && $scope.currentDive.buddy._id) {
+            $scope.currentDive.buddy = $scope.currentDive.buddy._id;
+        }
 
         setTimeout(function() {
             Materialize.updateTextFields();
