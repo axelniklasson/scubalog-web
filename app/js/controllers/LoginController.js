@@ -40,6 +40,7 @@ function($scope, $rootScope, $facebook, $state, FacebookService, LocalStorageSer
         var diver = {
             name: $rootScope.auth.user.name,
             email: $rootScope.auth.user.email,
+            picture: $rootScope.auth.user.picture,
             facebookID: $rootScope.auth.user.facebookID,
             organisation: $scope.registrationData.organisation,
             certification: $scope.registrationData.certification

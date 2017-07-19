@@ -13,8 +13,8 @@ var app = angular.module('ScubaLog', [
 
 	app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$facebookProvider', function($stateProvider, $httpProvider, $urlRouterProvider, $facebookProvider) {
 		// Initialize ngFacebook
-		// $facebookProvider.setAppId('1599673090056954');
-		$facebookProvider.setAppId('468010480219637');
+		// $facebookProvider.setAppId('1599673090056954'); // DEV
+		$facebookProvider.setAppId('468010480219637'); // PROD
 		$facebookProvider.setPermissions('email');
 
 		$facebookProvider.setCustomInit({
@@ -62,6 +62,12 @@ var app = angular.module('ScubaLog', [
 			url: '/logbook',
 			templateUrl: 'partials/auth/logbook.html',
 			controller: 'LogbookController',
+			authenticate: true
+		})
+		.state('auth.buddies', {
+			url: '/buddies',
+			templateUrl: 'partials/auth/buddies.html',
+			controller: 'BuddiesController',
 			authenticate: true
 		})
 		.state('auth.profile', {

@@ -1,7 +1,6 @@
 var module = angular.module('scubalog.controllers');
 
 module.controller('LogbookController', ['$scope', 'DiveService', 'LocalStorageService', function($scope, DiveService, LocalStorageService) {
-    // Materialize stuff
     $('.modal').modal();
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month

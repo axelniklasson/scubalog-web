@@ -1,3 +1,41 @@
 <div class="container">
     <h1>Dashboard</h1>
-</div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/reef.jpg">
+                    <span class="card-title">{{ stats.diveCount }}
+                        <span ng-if="stats.diveCount == 1">dive</span>
+                        <span ng-if="stats.diveCount != 1">dives</span> logged</span>
+                        <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+                    </div>
+                    <div class="card-content">
+                        <p>Have you gone diving lately? Make sure to log your dive!</p>
+                    </div>
+                    <div class="card-action">
+                        <a ui-sref="auth.logbook">My logbook</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="img/buddies.jpg">
+                        <span class="card-title">{{ stats.buddyCount }}
+                            <span ng-if="stats.buddyCount == 1">buddy</span>
+                            <span ng-if="stats.buddyCount != 1">buddies</span></span>
+                        <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+                    </div>
+                    <div class="card-content">
+                        <p>Diving is always more fun when you have a buddy.</p>
+                    </div>
+                    <div class="card-action">
+                        <a ui-sref="auth.buddies">My buddies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
