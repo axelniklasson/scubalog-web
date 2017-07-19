@@ -36,13 +36,36 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s6 m4">
-                    <input type="date" class="datepicker" ng-model="currentDive.date">
-                    <label for="date">Date</label>
+                    <input id="date" type="date" class="validate" ng-model="currentDive.date">
+                    <label class="active" for="date">Date</label>
                 </div>
 
                 <div class="input-field col s6 m4">
                     <input id="minutes" type="number" class="validate" ng-model="currentDive.minutes">
                     <label for="minutes">Minutes</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <div class="preloader-wrapper active" ng-if="loadingBuddies">
+                        <div class="spinner-layer spinner-red-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <select class="icons" ng-if="buddies.length > 0" ng-model="currentDive.buddy">
+                        <option value="{{ buddy._id }}" data-icon="{{ buddy.picture }}" class="left circle" ng-repeat="buddy in buddies">{{ buddy.name }}</option>
+                    </select>
+
+                    <p ng-if="!editingDive && (buddies.length == 0 || !buddies)">Could not find any buddies. Add buddies <a ui-sref="auth.buddies">here</a>.</p>
+                    <label>Buddy</label>
                 </div>
             </div>
 
@@ -68,7 +91,7 @@
 
                 <div class="input-field col s12 m6">
                     <input id="weight" type="text" class="validate" ng-model="currentDive.weight">
-                    <label ng-class="{ active: currentDive.weight != '' }" for="weight">Weight (kg)</label>
+                    <label for="weight">Weight (kg)</label>
                 </div>
             </div>
             <div class="row">
@@ -88,12 +111,12 @@
 
 <!-- Delete dive modal -->
 <div id="deleteDiveModal" class="modal">
-  <div class="modal-content">
-    <h4>Delete dive</h4>
-    <p>Are you sure you want to delete the dive? This can not be undone.</p>
-  </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <a ng-click="deleteDive()" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
-  </div>
+    <div class="modal-content">
+        <h4>Delete dive</h4>
+        <p>Are you sure you want to delete the dive? This can not be undone.</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a ng-click="deleteDive()" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
+    </div>
 </div>

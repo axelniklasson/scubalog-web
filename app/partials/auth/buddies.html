@@ -9,7 +9,7 @@
                 <img ng-src="{{ buddy.picture }}" alt="" class="circle">
                 <span class="title">{{ buddy.name }}</span>
                 <p>{{ buddy.certification | certification }}</p>
-                <a ng-click="removeBuddy(buddy._id)" class="secondary-content"><i class="material-icons">remove</i></a>
+                <a ng-click="showRemoveBuddyModal(buddy._id)" class="secondary-content"><i class="material-icons">remove</i></a>
             </li>
         </ul>
     </div>
@@ -56,5 +56,17 @@
 
     <div class="modal-footer">
         <a ng-click="closeQueryBuddiesModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
+</div>
+
+<!-- Delete buddy modal -->
+<div id="deleteBuddyModal" class="modal">
+    <div class="modal-content">
+        <h4>Remove buddy</h4>
+        <p>Do you want to remove your buddy? This can not be undone.</p>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="closeRemoveBuddyModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a ng-click="confirmRemoveBuddy()" class="modal-action modal-close waves-effect waves-green btn-flat">Remove</a>
     </div>
 </div>

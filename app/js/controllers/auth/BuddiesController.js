@@ -30,11 +30,15 @@ function($scope, $rootScope, DiverService) {
         }
     };
 
-    $scope.removeBuddy = function(buddy) {
-        DiverService.removeBuddy(buddy).then(function(response) {
+    $scope.removeBuddy = function(buddyID) {
+        DiverService.removeBuddy(buddyID).then(function(response) {
             Materialize.toast('Buddy removed!', 3000);
-            var index = $scope.buddies.indexOf(buddy);
-            $scope.buddies.splice(index, 1);
+
+            angular.forEach($scope.buddies, function(value, index) {
+                if (buddyID == value._id) {
+                    $scope.buddies.splice(index, 1);
+                }
+            });
         }).then(function(err) {
             if (err) {
                 Materialize.toast('Could not remove buddy. Try again later!', 3000);
@@ -66,6 +70,20 @@ function($scope, $rootScope, DiverService) {
         $('#queryBuddiesModal').modal('close');
         $scope.query.name = '';
         $scope.query.loading = false;
+    };
+
+    $scope.showRemoveBuddyModal = function(buddy) {
+        $scope.buddyToBeDeleted = buddy;
+        $('#deleteBuddyModal').modal('open');
+    };
+
+    $scope.confirmRemoveBuddy = function() {
+        $scope.removeBuddy($scope.buddyToBeDeleted);
+        $('#deleteBuddyModal').modal('close');
+    };
+
+    $scope.hideRemoveBuddyModal = function() {
+        $('#deleteBuddyModal').modal('close');
     };
 
 }]);
