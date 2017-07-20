@@ -2,7 +2,22 @@
     <h1>Buddies</h1>
 
     <div class="row">
-        <ul class="collection with-header">
+
+        <div class="col s6 offset-s4" ng-if="loadingBuddies">
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="collection with-header" ng-if="!loadingBuddies">
             <li class="collection-header"><h4>My buddies</h4><p>Add buddies by clicking the red plus button in the right corner.</p></li>
             <li class="collection-item" ng-if="buddies.length == 0">No buddies added yet.</li>
             <li class="collection-item avatar" ng-repeat="buddy in buddies">

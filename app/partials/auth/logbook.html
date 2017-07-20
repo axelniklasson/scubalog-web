@@ -13,16 +13,49 @@
             <p ng-if="dives.length == 0">You have not logged any dives yet..</p>
         </div>
 
-        <div class="col s6 m4" ng-repeat="dive in dives">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">#{{ dives.length - dives.indexOf(dive) }}</span>
-                    <p>{{ dive.site }}</p>
-                    <p>{{ dive.date | prettyDate }}</p>
-                    <p>{{ dive.minutes }} min</p>
+        <div class="col s6 offset-s4" ng-if="loadingDives">
+            <div class="preloader-wrapper small active">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
-                <div class="card-action">
-                    <a ng-click="editDive($index)">Edit</a>
+            </div>
+        </div>
+
+        <div class="col s12 m4" ng-repeat="dive in dives | orderBy:'-count'">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" ng-src="img/reef.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Dive #{{ dive.count }}<i class="material-icons right">more_vert</i></span>
+                    <p>{{ dive.date | prettyDate }}</p>
+                    <p>{{ dive.site }}</p><br>
+                    <p><a ng-click="editDive($index)">Edit</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Dive #{{ dive.count }}<i class="material-icons right">close</i></span>
+                    <h5>Details</h5>
+                    <p>
+                        A dive on {{ dive.date | prettyDate }} that lasted {{ dive.minutes }} minutes. Maximum depth
+                        {{ dive.maxDepth }} m with an average of {{ dive.avgDepth }} m. The water at {{ dive.site }} had a temperature of
+                        {{ dive.temperature }} °C and your extra weight was {{ dive.weight }} kg.
+                    </p>
+                    <h5>Buddy</h5>
+                    <ul class="collection">
+                        <li class="collection-item avatar" style="min-height:auto">
+                            <img ng-src="{{ dive.buddy.picture }}" alt="" class="circle">
+                            <span class="title">{{ dive.buddy.name }}</span>
+                            <p>{{ dive.buddy.certification | certification }}</p>
+                        </li>
+                    </ul>
+                    <h5>Notes</h5>
+                    <p>{{ dive.notes }}</p>
                 </div>
             </div>
         </div>
@@ -33,15 +66,20 @@
 <div id="diveModal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4>{{ modalTitle }}</h4>
-        <form class="col s12">
+        <form class="col s12" name="editDiveForm">
             <div class="row">
+                <div class="input-field col 12 m4">
+                    <input id="count" type="number" class="validate" ng-model="currentDive.count" ng-required="true">
+                    <label class="active" for="count">Dive number</label>
+                </div>
+
                 <div class="input-field col s6 m4">
-                    <input id="date" type="date" class="validate" ng-model="currentDive.date">
+                    <input id="date" type="date" class="validate" ng-model="currentDive.date" ng-required="true">
                     <label class="active" for="date">Date</label>
                 </div>
 
                 <div class="input-field col s6 m4">
-                    <input id="minutes" type="number" class="validate" ng-model="currentDive.minutes">
+                    <input id="minutes" type="number" class="validate" ng-model="currentDive.minutes" ng-required="true">
                     <label for="minutes">Minutes</label>
                 </div>
             </div>
@@ -70,33 +108,33 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s6 m4">
+                <div class="input-field col s6 m3">
                     <input id="temperature" type="number" class="validate" ng-model="currentDive.temperature">
-                    <label for="temperature">Temperature</label>
+                    <label for="temperature">Temperature (°C)</label>
                 </div>
-                <div class="input-field col s6 m4">
-                    <input id="maxDepth" type="number" class="validate" ng-model="currentDive.maxDepth">
+                <div class="input-field col s6 m3">
+                    <input id="weight" type="text" class="validate" ng-model="currentDive.weight" ng-required="true">
+                    <label for="weight">Weight (kg)</label>
+                </div>
+
+                <div class="input-field col s6 m3">
+                    <input id="maxDepth" type="number" class="validate" ng-model="currentDive.maxDepth" ng-required="true">
                     <label for="maxDepth">Maximum depth (m)</label>
                 </div>
-                <div class="input-field col s6 m4">
+                <div class="input-field col s6 m3">
                     <input id="avgDepth" type="number" class="validate" ng-model="currentDive.avgDepth">
                     <label for="avgDepth">Average depth (m)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="site" type="text" class="validate" ng-model="currentDive.site">
+                    <input id="site" type="text" class="validate" ng-model="currentDive.site" ng-required="true">
                     <label for="site">Dive site</label>
-                </div>
-
-                <div class="input-field col s12 m6">
-                    <input id="weight" type="text" class="validate" ng-model="currentDive.weight">
-                    <label for="weight">Weight (kg)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="notes" class="materialize-textarea" ng-model="currentDive.notes"></textarea>
+                    <textarea id="notes" class="materialize-textarea" ng-model="currentDive.notes" ng-required="true"></textarea>
                     <label for="notes">Notes</label>
                 </div>
             </div>
@@ -105,7 +143,7 @@
     <div class="modal-footer">
         <a ng-click="closeDiveModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
         <a ng-if="editingDive" ng-click="showDeleteDiveModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
-        <a ng-click="saveDive()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a ng-class="{ disabled: editDiveForm.$invalid }" ng-click="saveDive()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
     </div>
 </div>
 

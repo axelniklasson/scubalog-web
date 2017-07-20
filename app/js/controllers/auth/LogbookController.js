@@ -8,11 +8,14 @@ function($scope, DiveService, DiverService, LocalStorageService) {
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
+    $scope.loadingDives = true;
     DiveService.getDives().then(function(response) {
         $scope.dives = response.data;
+        $scope.loadingDives = false;
     }).then(function(err) {
         if (err) {
             Materialize.toast('Could not list dives!', 3000);
+            $scope.loadingDives = false;
             console.log(err);
         }
     });
@@ -37,6 +40,8 @@ function($scope, DiveService, DiverService, LocalStorageService) {
         $scope.currentDive = $scope.dives[index];
         $scope.currentDive.date = new Date($scope.currentDive.date);
         $scope.modalTitle = 'Edit dive';
+        $scope.stashedBuddy = $scope.currentDive.buddy;
+
         if ($scope.currentDive.buddy && $scope.currentDive.buddy._id) {
             $scope.currentDive.buddy = $scope.currentDive.buddy._id;
         }
@@ -50,7 +55,10 @@ function($scope, DiveService, DiverService, LocalStorageService) {
     $scope.newDive = function() {
         $('#diveModal').modal('open');
         $scope.editingDive = false;
-        $scope.currentDive = {};
+        $scope.currentDive = {
+            count: $scope.dives.length + 1,
+            date: new Date()
+        };
         $scope.modalTitle = 'New dive';
     };
 
@@ -60,6 +68,7 @@ function($scope, DiveService, DiverService, LocalStorageService) {
             DiveService.createDive($scope.currentDive).then(function(response) {
                 Materialize.toast('Dive created!', 3000);
                 $scope.dives.unshift(response.data);
+                $scope.currentDive = {};
             }).then(function(err) {
                 if (err) {
                     Materialize.toast('Something went wrong.', 3000);
@@ -69,10 +78,12 @@ function($scope, DiveService, DiverService, LocalStorageService) {
         } else {
             DiveService.updateDive($scope.currentDive).then(function(response) {
                 angular.forEach($scope.dives, function(dive, index) {
-                    if (dive._id == response._id) {
-                        dives[index] = response;
+                    if (dive._id == response.data._id) {
+                        $scope.dives[index] = response.data;
                     }
                 });
+
+                $scope.currentDive = {};
                 Materialize.toast('Dive updated!', 3000);
             }).then(function(err) {
                 if (err) {
@@ -81,12 +92,11 @@ function($scope, DiveService, DiverService, LocalStorageService) {
                 }
             });
         }
-
-        $scope.currentDive = {};
     };
 
     $scope.closeDiveModal = function() {
         $('#diveModal').modal('close');
+        $scope.currentDive.buddy = $scope.stashedBuddy;
     };
 
     $scope.showDeleteDiveModal = function() {

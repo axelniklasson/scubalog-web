@@ -9,3 +9,13 @@ body {
 a {
 	cursor: pointer;
 }
+
+.preloader-wrapper {
+	margin-top: 25px;
+}
+
+@media only screen and (max-width: 992px) {
+	#diveModal {
+		width: 100%;
+	}
+}

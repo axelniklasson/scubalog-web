@@ -8,11 +8,14 @@ function($scope, $rootScope, DiverService) {
     };
     $('.modal').modal();
 
+    $scope.loadingBuddies = true;
     DiverService.getBuddies().then(function(response) {
         $scope.buddies = response.data;
+        $scope.loadingBuddies = false;
     }).then(function(err) {
         if (err) {
             Materialize.toast('Could not get buddies. Try again later!', 3000);
+            $scope.loadingBuddies = false;
         }
     });
 
