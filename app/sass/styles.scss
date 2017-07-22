@@ -1,6 +1,8 @@
+@import 'profile';
+
 $font-stack: Helvetica, sans-serif;
 $primary-color: #222;
-
+ 
 body {
 	font: 100% $font-stack;
 	color: $primary-color;

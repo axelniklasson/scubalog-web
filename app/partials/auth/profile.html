@@ -1,3 +1,58 @@
-<div class="container">
-    <h1>Profile</h1>
+<div class="profile">
+    <div class="header">
+        <div id="bg_wrapper">
+            <img class="bg" src="img/profile_header.jpg" alt="">
+        </div>
+
+        <img class="profile circle" ng-src="{{ auth.user.picture }}" alt="">
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col s6 offset-s3 center">
+                    <h5>{{ auth.user.name }}</h5>
+                    <h6>{{ auth.user.certification | certification }}</h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s8 offset-s2 center">
+                    <div class="col s6 offset-s3" ng-if="loadingStats">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="!loadingStats">
+                        <div class="col s6">
+                            <i class="material-icons">pool</i><br>{{ stats.diveCount }} dives
+                        </div>
+
+                        <div class="col s6">
+                            <i class="material-icons">group</i><br>{{ stats.buddyCount }} buddies
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="!loadingStats">
+                        <div class="col s6">
+                            <i class="material-icons">timer</i><br>30h 10m bottom time
+                        </div>
+
+                        <div class="col s6">
+                            <i class="material-icons">date_range</i><br>Last dive two days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

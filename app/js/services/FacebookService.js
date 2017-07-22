@@ -12,7 +12,7 @@ function($http, $rootScope, $facebook, LocalStorageService) {
                         fbUser.facebookID = response.id;
                         fbUser.email = response.email;
 
-                        $facebook.api('/me/picture').then(function(response) {
+                        $facebook.api('/me/picture?width=9999').then(function(response) {
                             fbUser.picture = response.data.url;
                             LocalStorageService.set('fbUser', fbUser);
                             $rootScope.auth.user = fbUser;
