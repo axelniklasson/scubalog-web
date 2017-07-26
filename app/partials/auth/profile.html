@@ -33,22 +33,30 @@
                     </div>
 
                     <div class="row" ng-if="!loadingStats">
-                        <div class="col s6">
-                            <i class="material-icons">pool</i><br>{{ stats.diveCount }} dives
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">pool</i><br>{{ stats.diveCount }} dives
                         </div>
 
-                        <div class="col s6">
-                            <i class="material-icons">group</i><br>{{ stats.buddyCount }} buddies
-                        </div>
-                    </div>
-
-                    <div class="row" ng-if="!loadingStats">
-                        <div class="col s6">
-                            <i class="material-icons">timer</i><br>30h 10m bottom time
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">group</i><br>{{ stats.buddyCount }} buddies
                         </div>
 
-                        <div class="col s6">
-                            <i class="material-icons">date_range</i><br>Last dive two days ago
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">timer</i><br>{{ stats.totalDiveTime | splitMinutes }}
+                        </div>
+                    <!-- </div> -->
+
+                    <!-- <div class="row" ng-if="!loadingStats"> -->
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">date_range</i><br>First dive {{ stats.firstDive | timeSince }} ago
+                        </div>
+
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">date_range</i><br>Last dive {{ stats.lastDive | timeSince }} ago
+                        </div>
+
+                        <div class="col s6 m4">
+                            <i class="material-icons circular">bubble_chart</i><br>Maximum depth {{ stats.maxDepth }} m
                         </div>
                     </div>
                 </div>

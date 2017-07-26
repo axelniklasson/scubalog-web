@@ -23,3 +23,15 @@ module.filter('timeSince', function() {
         return moment(dateString).toNow(true);
     };
 });
+
+module.filter('splitMinutes', function() {
+    return function(minutes) {
+        var res = 'Total dive time of ' + Math.floor(minutes / 60) + ' h';
+
+        if (minutes % 60 != 0) {
+            res += ' ' + minutes % 60 + ' min';
+        }
+
+        return res;
+    };
+});

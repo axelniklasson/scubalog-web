@@ -4,7 +4,6 @@ module.controller('ProfileController', ['$scope', 'DashboardService', function($
     $scope.loadingStats = true;
     DashboardService.getStats().then(function(response) {
         $scope.stats = response.data;
-        console.log($scope.stats);
         $scope.loadingStats = false;
     }).then(function(err) {
         if (err) {

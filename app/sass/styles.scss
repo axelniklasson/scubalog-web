@@ -2,7 +2,7 @@
 
 $font-stack: Helvetica, sans-serif;
 $primary-color: #222;
- 
+
 body {
 	font: 100% $font-stack;
 	color: $primary-color;
@@ -14,6 +14,14 @@ a {
 
 .preloader-wrapper {
 	margin-top: 25px;
+}
+
+.material-icons.circular {
+    background: #ee6e73;
+    padding: 10px;
+    margin: 20px;
+    color: white;
+    border-radius: 50%;
 }
 
 @media only screen and (max-width: 992px) {
