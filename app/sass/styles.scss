@@ -24,14 +24,16 @@ a {
     border-radius: 50%;
 }
 
-.card.small {
-	min-height: 450px;
-
+.card {
 	.buddy-wrapper {
 		margin-top: 5px;
 		& > span {
 			margin-left: 5px;
 		}
+	}
+
+	.card-content {
+		height: 200px;
 	}
 }
 
