@@ -57,7 +57,8 @@ function($scope, DiveService, DiverService, LocalStorageService) {
         $scope.editingDive = false;
         $scope.currentDive = {
             count: $scope.dives.length + 1,
-            date: new Date()
+            date: new Date(),
+            startBar: 200
         };
         $scope.modalTitle = 'New dive';
     };

@@ -24,8 +24,16 @@ a {
     border-radius: 50%;
 }
 
+.card.small {
+	min-height: 400px;
+}
+
 @media only screen and (max-width: 992px) {
 	#diveModal {
 		width: 100%;
+	}
+
+	.card.small {
+		min-height: 350px;
 	}
 }

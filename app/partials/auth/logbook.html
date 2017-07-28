@@ -31,7 +31,7 @@
         </div>
 
         <div class="col s12 m4" ng-repeat="dive in dives | orderBy:'-count'">
-            <div class="card">
+            <div class="card small">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" ng-src="img/reef.jpg">
                 </div>
@@ -48,13 +48,21 @@
                         A dive on {{ dive.date | prettyDate }} that lasted {{ dive.minutes }} minutes. Maximum depth
                         {{ dive.maxDepth }} m with an average of {{ dive.avgDepth }} m. The water at {{ dive.site }} had a temperature of
                         {{ dive.temperature }} °C and your extra weight was {{ dive.weight }} kg.
+                        <span ng-if="dive.startBar && dive.endBar">
+                            You used {{ dive.startBar - dive.endBar }} bar during the dive with an average of
+                            {{ dive.startBar / dive.minutes | number:1 }}
+                            bar per minute.
+                        </span>
                     </p>
                     <h5>Buddy</h5>
                     <ul class="collection">
-                        <li class="collection-item avatar" style="min-height:auto">
+                        <li class="collection-item avatar" style="min-height:auto" ng-if="dive.buddy">
                             <img ng-src="{{ dive.buddy.picture }}" alt="" class="circle">
                             <span class="title">{{ dive.buddy.name }}</span>
                             <p>{{ dive.buddy.certification | certification }}</p>
+                        </li>
+                        <li class="collection-item" style="min-height:auto" ng-if="!dive.buddy">
+                            <p>No buddy tagged in dive.</p>
                         </li>
                     </ul>
                     <h5>Notes</h5>
@@ -127,6 +135,17 @@
                 <div class="input-field col s6 m3">
                     <input id="avgDepth" type="number" class="validate" ng-model="currentDive.avgDepth">
                     <label for="avgDepth">Average depth (m)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="startBar" type="number" class="validate" ng-model="currentDive.startBar">
+                    <label class="active" for="startBar">Start pressure (bar)</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="endBar" type="number" class="validate" ng-model="currentDive.endBar">
+                    <label for="endBar">End pressure (bar)</label>
                 </div>
             </div>
             <div class="row">
