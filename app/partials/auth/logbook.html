@@ -40,7 +40,7 @@
                     <p>{{ dive.date | prettyDate }}</p>
                     <p>{{ dive.site }}</p>
                     <div class="valign-wrapper buddy-wrapper" ng-if="dive.buddy">
-                        <img ng-src="{{ dive.buddy.picture }}" width="25px" alt=""> <span>{{ dive.buddy.name }}</span>
+                        <img class="circle" ng-src="{{ dive.buddy.picture }}" width="25px" alt=""> <span>{{ dive.buddy.name }}</span>
                     </div>
                     <p ng-if="!dive.buddy"><br>No buddy tagged in dive.</p>
                     <p><br><a ng-click="editDive($index)">Edit</a></p>
