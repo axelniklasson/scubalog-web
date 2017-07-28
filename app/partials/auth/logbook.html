@@ -38,8 +38,12 @@
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Dive #{{ dive.count }}<i class="material-icons right">more_vert</i></span>
                     <p>{{ dive.date | prettyDate }}</p>
-                    <p>{{ dive.site }}</p><br>
-                    <p><a ng-click="editDive($index)">Edit</a></p>
+                    <p>{{ dive.site }}</p>
+                    <div class="valign-wrapper buddy-wrapper" ng-if="dive.buddy">
+                        <img ng-src="{{ dive.buddy.picture }}" width="25px" alt=""> <span>{{ dive.buddy.name }}</span>
+                    </div>
+                    <p ng-if="!dive.buddy"><br>No buddy tagged in dive.</p>
+                    <p><br><a ng-click="editDive($index)">Edit</a></p>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Dive #{{ dive.count }}<i class="material-icons right">close</i></span>
