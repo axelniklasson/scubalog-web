@@ -70,11 +70,10 @@ var app = angular.module('ScubaLog', [
 			controller: 'BuddiesController',
 			authenticate: true
 		})
-		.state('auth.profile', {
-			url: '/profile',
-			templateUrl: 'partials/auth/profile.html',
-			controller: 'ProfileController',
-			authenticate: true
+		.state('auth.diverDetail', {
+			url: '/divers/:id',
+			templateUrl: 'partials/auth/diver-detail.html',
+			controller: 'DiverDetailController'
 		})
 		.state('auth.settings', {
 			url: '/settings',
