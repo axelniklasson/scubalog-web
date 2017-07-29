@@ -22,7 +22,7 @@
             <li class="collection-item" ng-if="buddies.length == 0">No buddies added yet.</li>
             <li class="collection-item avatar" ng-repeat="buddy in buddies">
                 <img ng-src="{{ buddy.picture }}" alt="" class="circle">
-                <span class="title">{{ buddy.name }}</span>
+                <span class="title pointer" ui-sref="auth.diverDetail({ id: buddy._id })">{{ buddy.name }}</span>
                 <p>{{ buddy.certification | certification }}</p>
                 <a ng-click="showRemoveBuddyModal(buddy._id)" class="secondary-content"><i class="material-icons">remove</i></a>
             </li>

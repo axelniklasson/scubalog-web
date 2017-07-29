@@ -47,6 +47,17 @@ module.factory('DiveService', ['$http', 'LocalStorageService', function($http, L
             };
 
             return $http(req);
+        },
+        getLatestDives: function(diverID) {
+            var req = {
+                method: 'GET',
+                url: $http.defaults.base_url + '/dives?diverID=' + diverID + '&take=5',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            return $http(req);
         }
     };
 }]);

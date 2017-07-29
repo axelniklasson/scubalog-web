@@ -24,9 +24,9 @@ module.filter('timeSince', function() {
     };
 });
 
-module.filter('splitMinutes', function() {
+module.filter('diveTime', function() {
     return function(minutes) {
-        var res = 'Total dive time of ' + Math.floor(minutes / 60) + ' h';
+        var res = 'Total ' + Math.floor(minutes / 60) + ' h';
 
         if (minutes % 60 != 0) {
             res += ' ' + minutes % 60 + ' min';

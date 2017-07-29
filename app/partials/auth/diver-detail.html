@@ -17,7 +17,7 @@
             </div>
 
             <div class="row">
-                <div class="col s8 offset-s2 center">
+                <div class="col s12 m8 offset-m2 center">
                     <div class="col s6 offset-s3" ng-if="loadingStats">
                         <div class="preloader-wrapper small active">
                             <div class="spinner-layer spinner-red-only">
@@ -44,11 +44,9 @@
                         </div>
 
                         <div class="col s6 m4">
-                            <i class="material-icons circular">timer</i><br>{{ stats.totalDiveTime | splitMinutes }}
+                            <i class="material-icons circular">timer</i><br>{{ stats.totalDiveTime | diveTime }}
                         </div>
-                    <!-- </div> -->
 
-                    <!-- <div class="row" ng-if="!loadingStats"> -->
                         <div class="col s6 m4">
                             <i class="material-icons circular">date_range</i><br>
                             <span ng-if="stats.firstDive != 0">First dive {{ stats.firstDive | timeSince }} ago</span>
@@ -67,6 +65,41 @@
                             <span ng-if="stats.maxDepth == 0">No dives logged.</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 offset-s3 center">
+                    <h5>Latest dives</h5>
+                    <p ng-if="!latestDives || latestDives.length == 0">No dives logged..</p>
+                </div>
+
+                <div class="col s12 m8 offset-m2">
+                    <div class="col s6 offset-s3" ng-if="loadingStats">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="collection" ng-if="latestDives.length > 0">
+                        <li class="collection-item" ng-repeat="dive in latestDives">
+                            {{ dive.date | prettyDate }} at {{ dive.site }}
+                            <span ng-if="dive.buddy"> with <a ui-sref="auth.diverDetail({ id: dive.buddy._id })">{{ dive.buddy.name }}</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 offset-s3 center">
                 </div>
             </div>
         </div>
