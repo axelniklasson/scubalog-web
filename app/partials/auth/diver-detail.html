@@ -4,15 +4,15 @@
             <img class="bg" src="img/profile_header.jpg" alt="">
         </div>
 
-        <img class="profile circle" ng-src="{{ auth.user.picture }}" alt="">
+        <img class="profile circle" ng-src="{{ diver.picture }}" alt="">
     </div>
 
     <div class="main">
         <div class="container">
             <div class="row">
                 <div class="col s6 offset-s3 center">
-                    <h5>{{ auth.user.name }}</h5>
-                    <h6>{{ auth.user.certification | certification }}</h6>
+                    <h5>{{ diver.name }}</h5>
+                    <h6>{{ diver.certification | certification }}</h6>
                 </div>
             </div>
 
@@ -38,7 +38,9 @@
                         </div>
 
                         <div class="col s6 m4">
-                            <i class="material-icons circular">group</i><br>{{ stats.buddyCount }} buddies
+                            <i class="material-icons circular">group</i><br>{{ stats.buddyCount }}
+                            <span ng-if="stats.buddyCount == 1"> buddy</span>
+                            <span ng-if="stats.buddyCount != 1"> buddies</span>
                         </div>
 
                         <div class="col s6 m4">
@@ -48,15 +50,21 @@
 
                     <!-- <div class="row" ng-if="!loadingStats"> -->
                         <div class="col s6 m4">
-                            <i class="material-icons circular">date_range</i><br>First dive {{ stats.firstDive | timeSince }} ago
+                            <i class="material-icons circular">date_range</i><br>
+                            <span ng-if="stats.firstDive != 0">First dive {{ stats.firstDive | timeSince }} ago</span>
+                            <span ng-if="stats.firstDive == 0">No dives logged.</span>
                         </div>
 
                         <div class="col s6 m4">
-                            <i class="material-icons circular">date_range</i><br>Last dive {{ stats.lastDive | timeSince }} ago
+                            <i class="material-icons circular">date_range</i><br>
+                            <span ng-if="stats.firstDive != 0">Last dive {{ stats.lastDive | timeSince }} ago</span>
+                            <span ng-if="stats.firstDive == 0">No dives logged.</span>
                         </div>
 
                         <div class="col s6 m4">
-                            <i class="material-icons circular">bubble_chart</i><br>Maximum depth {{ stats.maxDepth }} m
+                            <i class="material-icons circular">bubble_chart</i><br>
+                            <span ng-if="stats.maxDepth != 0">Maximum depth {{ stats.maxDepth }} m</span>
+                            <span ng-if="stats.maxDepth == 0">No dives logged.</span>
                         </div>
                     </div>
                 </div>

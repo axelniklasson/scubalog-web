@@ -21,7 +21,7 @@
             <li ui-sref-active="active"><a ui-sref="auth.dashboard">Dashboard <i class="material-icons left">dashboard</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.logbook">Logbook <i class="material-icons left">list</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.buddies">Buddies <i class="material-icons left">group</i></a></li>
-            <li ui-sref-active="active"><a ui-sref="auth.profile">Profile <i class="material-icons left">account_circle</i></a></li>
+            <li ui-sref-active="active"><a ui-sref="auth.diverDetail({ id: auth.user._id })">Profile <i class="material-icons left">account_circle</i></a></li>
             <li ui-sref-active="active"><a ui-sref="auth.settings">Settings <i class="material-icons left">settings</i></a></li>
             <li ng-click="logout()"><a>Log out <i class="material-icons left">power_settings_new</i></a></li>
         </ul>
@@ -30,7 +30,7 @@
 
 <!-- Dropdown -->
 <ul id="profileDropdown" class="dropdown-content">
-    <li ui-sref-active="active"><a ui-sref="auth.profile">Profile <i class="material-icons left">account_circle</i></a></li>
+    <li ui-sref-active="active"><a ui-sref="auth.diverDetail({ id: auth.user._id })">Profile <i class="material-icons left">account_circle</i></a></li>
     <li ui-sref-active="active"><a ui-sref="auth.settings">Settings <i class="material-icons left">settings</i></a></li>
     <li ng-click="logout()"><a>Log out <i class="material-icons left">power_settings_new</i></a></li>
 </ul>
