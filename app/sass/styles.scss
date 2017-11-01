@@ -1,4 +1,6 @@
 @import 'profile';
+@import 'colors';
+@import 'helpers';
 
 $font-stack: Helvetica, sans-serif;
 $primary-color: #222;
@@ -15,6 +17,7 @@ a, .pointer {
 .preloader-wrapper {
 	margin-top: 25px;
 }
+
 
 .material-icons.circular {
     background: #ee6e73;

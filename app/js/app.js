@@ -13,7 +13,7 @@ var app = angular.module('ScubaLog', [
 
 	app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$facebookProvider', function($stateProvider, $httpProvider, $urlRouterProvider, $facebookProvider) {
 		// Initialize ngFacebook
-		// $facebookProvider.setAppId('1599673090056954'); // DEV
+		//$facebookProvider.setAppId('1599673090056954'); // DEV
 		$facebookProvider.setAppId('468010480219637'); // PROD
 		$facebookProvider.setPermissions('email');
 
@@ -24,7 +24,7 @@ var app = angular.module('ScubaLog', [
 		});
 
 		// Base url
-		// $httpProvider.defaults.base_url = 'http://localhost:8080';
+		//$httpProvider.defaults.base_url = 'http://localhost:8080';
 		$httpProvider.defaults.base_url = 'https://scubalog-backend.herokuapp.com';
 
 		// Interceptors
@@ -116,7 +116,6 @@ var app = angular.module('ScubaLog', [
 					LocalStorageService.clear('fbUser');
 					LocalStorageService.clear('fbToken');
 					$rootScope.auth.authenticated = false;
-					$state.transitionTo('base.login');
 				}
 			});
 
