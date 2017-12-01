@@ -7,23 +7,20 @@ function($http, $rootScope, $facebook, LocalStorageService) {
             var promise = new Promise(function(resolve, reject) {
                 $facebook.getLoginStatus().then(function(response) {
                     $facebook.api('/me?fields=name,email').then(function(response) {
+                        // Build user object to cache
                         var fbUser = {};
                         fbUser.name = response.name;
                         fbUser.facebookID = response.id;
                         fbUser.email = response.email;
+                        fbUser.picture = 'https://graph.facebook.com/' + fbUser.facebookID + '/picture?width=400&height=400';
 
-                        $facebook.api('/me/picture?width=9999').then(function(response) {
-                            fbUser.picture = response.data.url;
-                            LocalStorageService.set('fbUser', fbUser);
-                            $rootScope.auth.user = fbUser;
-                            resolve(fbUser);
-                        }, function(err) {
-                            LocalStorageService.set('fbUser', fbUser);
-                            $rootScope.auth.user = fbUser;
-                            reject(err);
-                        });
+                        // Cache user object and resolve promise
+                        LocalStorageService.set('fbUser', fbUser);
+                        $rootScope.auth.user = fbUser;
+                        resolve(fbUser);
                     }, function(err) {
                         console.log(err);
+                        reject(err);
                     });
                 });
             });
