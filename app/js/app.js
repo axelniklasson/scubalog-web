@@ -24,8 +24,8 @@ var app = angular.module('ScubaLog', [
 		});
 
 		// Base url
-		//$httpProvider.defaults.base_url = 'http://localhost:8080';
-		$httpProvider.defaults.base_url = 'https://scubalog-backend.herokuapp.com';
+		// $httpProvider.defaults.base_url = 'http://localhost:8080';
+		$httpProvider.defaults.base_url = '/api';
 
 		// Interceptors
 		$httpProvider.interceptors.push('UnauthorizedInterceptor');
