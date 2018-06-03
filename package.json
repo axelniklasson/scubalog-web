@@ -4,20 +4,17 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "material-ui": "^0.20.0",
-    "moment": "^2.21.0",
-    "node-sass": "^4.8.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0"
   },
   "scripts": {
-    "build-css": "node-sass src/styles/main.scss public/main.css",
-    "watch-css": "npm run build-css && node-sass src/styles/main.scss public/main.css --watch",
-    "start": "NODE_PATH=src:src/components:src/containers react-scripts start",
-    "build": "NODE_PATH=src:src/components:src/containers react-scripts build",
-    "test": "NODE_PATH=src:src/components:src/containers react-scripts test --env=jsdom",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
 }
