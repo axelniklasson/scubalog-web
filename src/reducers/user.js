@@ -1,8 +1,7 @@
 import { FB_AUTH_SUCCESS, FB_AUTH_ERR } from '../constants/actionTypes';
 
 const initialState = {
-  fbData: {},
-  data: {},
+  name: 'Axel Niklasson',
   authenticated: false
 };
 
@@ -11,7 +10,7 @@ const user = (state = initialState, action) => {
     case FB_AUTH_SUCCESS:
       return {
         ...state,
-        fbData: action.payload,
+        name: action.payload.name,
         authenticated: true
       }; 
 

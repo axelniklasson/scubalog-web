@@ -11,7 +11,8 @@ class Home extends Component {
 
     return (
       <div>
-        <h1>{`Hello and welcome, ${user.fbData.name}`}</h1>
+        <h1>Home</h1>
+        <p>{`Hello and welcome, ${user.name}`}</p>
       </div>
     );
   }
