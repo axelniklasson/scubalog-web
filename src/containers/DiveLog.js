@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDiveLog } from '../actions';
-import axios from 'axios';
+import LogItem from '../components/LogItem';
+
+import '../styles/components/_divelog.scss';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -16,19 +18,17 @@ class DiveLog extends Component {
   render() {
     const { isFetching, data } = this.props.dives;
 
-    if (isFetching) { 
-      return <p>Loading dive log..</p>;
-    }
-
     return (
-      <div>
-        {isFetching &&
-          <p>Loading </p>
-        }
+      <div className="diveLog">
+        <h1>Dive log</h1>
 
-        {data.map(dive => (
-          <p>Dive item </p> 
-        ))}
+        {isFetching && <p>Fetching dive log..</p>}
+
+        <ul>
+          {!isFetching && data.map(dive => (
+              <LogItem dive={dive} />
+          ))}
+        </ul>
       </div>
     ); 
   }

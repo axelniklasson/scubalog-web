@@ -28,8 +28,9 @@ const dives = (state = initialState, action) => {
         isFetching: false,
         data: []
       };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default dives;
