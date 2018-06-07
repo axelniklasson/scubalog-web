@@ -5,6 +5,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Login from '../containers/Login';
 import Home from '../containers/Home';
 import DiveLog from '../containers/DiveLog';
+import NewDive from '../containers/NewDive';
+import Profile from '../containers/Profile';
 
 const mapStateToProps = state => ({
   authed: state.user.authenticated
@@ -14,8 +16,11 @@ const Routes = ({ authed }) => (
   <div>
     <Switch>
       <Route path="/login" component={Login} />
-      <Route path="/divelog" component={DiveLog} />
+
       <Route exact path="/" component={Home} />
+      <Route exact path="/divelog" component={DiveLog} />
+      <Route path="/divelog/add" component={NewDive} />
+      <Route path="/profile" component={Profile} />
     </Switch>
   </div>
 );

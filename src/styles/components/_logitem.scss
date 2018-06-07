@@ -1,3 +1,5 @@
+@import '../_variables.scss';
+
 .logItem {
   background-color: white;
   margin: 30px 0;
@@ -5,6 +7,10 @@
 
   &:first-child {
     margin-top: 0; 
+  }
+
+  * {
+    font-weight: 300;
   }
 
   .header {
@@ -54,6 +60,10 @@
 
     .extra {
       padding-top: 10px; 
+
+      q:before, q:after {
+        color: $primary-color;
+      }
     }
   }
 }

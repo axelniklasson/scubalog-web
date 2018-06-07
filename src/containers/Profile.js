@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NewDiveLogBar from '../components/NewDiveLogBar';
 
 const mapStateToProps = state => ({
   user: state.user
 });
 
-class Home extends Component {
+class Profile extends Component {
   render() {
     const { user } = this.props;
+    console.log(user);
 
     return (
       <div>
-        <h1>Home</h1>
-        <p>{`Hello and welcome, ${user.name}`}</p>
-
-        <NewDiveLogBar />
+        <h1>Profile</h1>
+        <p>{user.name}</p>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Profile);

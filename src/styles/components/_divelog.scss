@@ -1,6 +1,9 @@
 .diveLog {
   display: flex;
   flex-direction: column;
+  h1 {
+    margin-top: 0;
+  }
 
   ul {
     list-style-type: none;

@@ -18,14 +18,14 @@ export default class LogItem extends Component {
   }
 
   render() {
-    const { dive } = this.props; 
+    const { dive } = this.props;
 
     return (
       <li 
         className="logItem"
         onClick={this.toggleExpand}>
         <div className="header">
-          <img src={dive.picture
+          <img alt="Dive" src={dive.picture
             ? dive.picture
             : FallbackImage} />
           <div className="gradient">
@@ -34,11 +34,11 @@ export default class LogItem extends Component {
           </div>
         </div>
         <div className="main">
-          <p>{`${dive.site}`}</p>
+          <p>{`${dive.minutes} min at ${dive.site}`}</p>
 
           {dive.buddy && 
             <div className="buddy">
-              <img src={dive.buddy.picture} />
+              <img alt="Buddy" src={dive.buddy.picture} />
               <span>{dive.buddy.name}</span>
             </div>
           }
@@ -47,7 +47,7 @@ export default class LogItem extends Component {
 
           {this.state.expanded && 
             <div className="extra">
-            <p>{dive.notes}</p> 
+            <q>{dive.notes}</q> 
             </div> 
           }
         </div>

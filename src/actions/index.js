@@ -31,7 +31,7 @@ export function fetchDiveLog() {
   return dispatch => {
     dispatch(fetchDiveLogStarted());
 
-    return axios.get('https://scubalog.axelniklasson.se/api/dives?diverID=597cbd0f88e02100111ad049')
+    return axios.get('https://scubalog.axelniklasson.se/api/dives?diverID=597cbd0f88e02100111ad049&take=3')
       .then(res => dispatch(fetchDiveLogSuccess(res)))
       .catch(err => dispatch(fetchDiveLogError(err)))
   }

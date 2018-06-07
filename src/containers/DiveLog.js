@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDiveLog } from '../actions';
 import LogItem from '../components/LogItem';
+import NewDiveLogBar from '../components/NewDiveLogBar';
+import Spinner from '../components/Spinner';
 
 import '../styles/components/_divelog.scss';
 
@@ -22,13 +24,15 @@ class DiveLog extends Component {
       <div className="diveLog">
         <h1>Dive log</h1>
 
-        {isFetching && <p>Fetching dive log..</p>}
+        {isFetching && <Spinner />}
 
         <ul>
           {!isFetching && data.map(dive => (
-              <LogItem dive={dive} />
+              <LogItem key={dive._id} dive={dive} />
           ))}
         </ul>
+
+        <NewDiveLogBar />
       </div>
     ); 
   }
