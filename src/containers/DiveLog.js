@@ -26,11 +26,13 @@ class DiveLog extends Component {
 
         {isFetching && <Spinner />}
 
-        <ul>
-          {!isFetching && data.map(dive => (
-              <LogItem key={dive._id} dive={dive} />
-          ))}
-        </ul>
+        {(!isFetching && data.length > 0) && (
+          <ul>
+            {data.map(dive => (
+                <LogItem key={dive._id} dive={dive} />
+            ))}
+          </ul>
+        )}
 
         <NewDiveLogBar />
       </div>

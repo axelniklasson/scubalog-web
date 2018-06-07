@@ -8,7 +8,6 @@ const mapStateToProps = state => ({
 class Profile extends Component {
   render() {
     const { user } = this.props;
-    console.log(user);
 
     return (
       <div>

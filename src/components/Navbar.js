@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 
 import '../styles/components/_navbar.scss';
 
@@ -24,7 +24,7 @@ class Navbar extends Component {
         return (
             <div className={dropdownVisible ? 'navbar visible' : 'navbar'}>
                 <div className="wrapper">
-                    ScubaLog
+                    <Link to="/">ScubaLog</Link>
                     <span onClick={this.toggleDropdown}>
                         {dropdownVisible ? 'Hide' : 'Menu'}
                     </span>
