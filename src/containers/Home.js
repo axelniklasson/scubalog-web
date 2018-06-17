@@ -12,7 +12,7 @@ class Home extends Component {
     const { user } = this.props;
 
     return (
-      <div>
+      <div style={{ paddingBottom: '100px' }}>
         <h1>Home</h1>
         <p>{`Hello and welcome, ${user.name}`}</p>
 

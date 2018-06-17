@@ -21,7 +21,7 @@ class DiveLog extends Component {
     const { isFetching, data } = this.props.dives;
 
     return (
-      <div className="diveLog">
+      <div className="diveLog" style={{ paddingBottom: '100px' }}>
         <h1>Dive log</h1>
 
         {isFetching && <Spinner />}

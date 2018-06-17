@@ -10,7 +10,7 @@ class Profile extends Component {
     const { user } = this.props;
 
     return (
-      <div>
+      <div style={{ paddingBottom: '100px' }}>
         <h1>Profile</h1>
         <p>{user.name}</p>
       </div>
