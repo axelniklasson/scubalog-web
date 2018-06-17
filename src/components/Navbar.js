@@ -25,32 +25,35 @@ class Navbar extends Component {
             <div className={dropdownVisible ? 'navbar visible' : 'navbar'}>
                 <div className="wrapper">
                     <Link to="/">ScubaLog</Link>
-                    <span onClick={this.toggleDropdown}>
-                        {dropdownVisible ? 'Hide' : 'Menu'}
-                    </span>
+                    <div 
+                        className={dropdownVisible ? 'menuIcon toggled' : 'menuIcon'}
+                        onClick={this.toggleDropdown}
+                    >
+                        <div /> 
+                        <div /> 
+                        <div /> 
+                    </div>
                 </div>
 
-                {dropdownVisible && 
-                    <div className="dropdown">
-                        <ul>
-                            <li>
-                                <NavLink exact to="/" onClick={this.toggleDropdown}>Home</NavLink>
-                            </li>
+                <div className="dropdown">
+                    <ul>
+                        <li>
+                            <NavLink exact to="/" onClick={this.toggleDropdown}>Home</NavLink>
+                        </li>
 
-                            <li>
-                                <NavLink exact to="/divelog" onClick={this.toggleDropdown}>Dive log</NavLink>
-                            </li>
+                        <li>
+                            <NavLink exact to="/divelog" onClick={this.toggleDropdown}>Dive log</NavLink>
+                        </li>
 
-                            <li>
-                                <NavLink to="/divelog/add" onClick={this.toggleDropdown}>Log new dive</NavLink>
-                            </li>
+                        <li>
+                            <NavLink to="/divelog/add" onClick={this.toggleDropdown}>Log new dive</NavLink>
+                        </li>
 
-                            <li>
-                                <NavLink to="/profile" onClick={this.toggleDropdown}>Profile</NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                }
+                        <li>
+                            <NavLink to="/profile" onClick={this.toggleDropdown}>Profile</NavLink>
+                        </li>
+                    </ul>
+                </div>
             </div>
         );
     }

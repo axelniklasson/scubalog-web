@@ -24,14 +24,18 @@
         width: 100%;
     }
 
+
     .dropdown {
+        overflow: hidden;
         position: absolute;
+        max-height: 0;
         top: 60px;
         left: 0;
         width: 100%;
         background: white;
         border-top: 1px solid #EFEFEF;
         @include box-shadow-bottom;
+        transition: max-height 0.2s ease-in-out;
 
         ul {
             list-style-type: none;
@@ -48,6 +52,43 @@
                     color: black;
                     font-weight: bold;
                 }
+            }
+        }
+    }
+
+    &.visible .dropdown {
+        max-height: 300px;
+    }
+
+    .menuIcon {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div {
+            background: darken($primary-color, 20);
+            opacity: 1;
+            height: 3px;
+            transition: 0.3s;
+        }
+
+        &.toggled {
+            div {
+                width: 100%;
+            }
+
+            div:first-child {
+                transform: rotate(-45deg) translate(-5px, 10px);
+            }
+
+            div:nth-child(2) {
+                opacity: 0;
+            } 
+
+            div:last-child {
+                transform: rotate(45deg) translate(-5px, -10px);
             }
         }
     }
