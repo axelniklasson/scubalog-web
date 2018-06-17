@@ -1,0 +1,29 @@
+@import '../_variables.scss';
+
+.newDive {
+    form {
+        label {
+            color: white;
+        }
+
+        input, button {
+            width: 100%;
+            margin: 10px auto;
+            font-size: 1em;
+            padding: 10px 0;
+            border: none;
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+
+        button {
+            text-align: center;
+            background: $primary-color;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+    }
+}

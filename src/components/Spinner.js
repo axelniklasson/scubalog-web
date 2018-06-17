@@ -2,6 +2,8 @@ import React from 'react';
 
 import '../styles/components/_spinner.scss';
 
-export default () => (
-    <div className="spinner" />
-);
+export default ({ styles }) => {
+    return (
+        <div style={styles} className="spinner" />
+    );
+};
